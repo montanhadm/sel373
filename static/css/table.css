@@ -1,0 +1,22 @@
+table {
+    text-align: center;
+    font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+    margin: 2em 0.5em 2em 0.5em;
+    background-color: ghostwhite;
+    border-collapse: collapse;
+    border: 1px solid cornflowerblue;
+}
+
+thead {
+    font-weight: 700;
+    background-color: cornflowerblue;
+    color: white;
+}
+
+th, td {
+    padding: 0.5em 1em;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}

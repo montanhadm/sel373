@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adicionar Leitura</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/basic.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto+Condensed:400,400i,700|Titillium+Web:400,400i,700">
+        <meta charset="utf-8">
+    </head>
+    
+	<body>
+	
+        <nav>
+           {% include 'nav.html' %}
+        </nav>
+        
+        <center>
+            <table>
+                <thead>
+                    <td>Valor Medido</td>
+                    <td>Hora</td>
+                    <td>Data</td>
+                </thead>
+
+                {% for row in rows %}
+                <tr>
+                    <td>{{row["VALOR"]}}</td>
+                    <td>{{row["HORA"]}}</td>
+                    <td>{{row["DATA"]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </center>
+		
+	</body>
+</html>
+

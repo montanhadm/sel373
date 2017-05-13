@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adicionar Leitura</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/basic.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/system_msg.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto+Condensed:400,400i,700|Titillium+Web:400,400i,700">
+        <meta charset="utf-8">
+    </head>
+    
+	<body>
+	
+        <nav>
+           {% include 'nav.html' %}
+        </nav>
+        
+        {% if msg == 1 %}
+            <center>
+                <div id="msg_success">
+                    <h2>Leitura enviada com sucesso!</h2>
+                </div>
+            <center>
+
+        {% elif msg == 2 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>Erro ao enviar a leitura. Tente novamente.</h2>
+                </div>
+            </center>
+        {% endif %}
+                
+		<form method="post">
+				<h1>Adicionar Leitura</h1>
+				<div>
+                    <h3>Medição</h3>
+                    <input type="number" name="Valor" placeholder="000000" min="0" max="999999">
+                </div>
+                <div>
+                    <h3>Hora</h3>
+                    <input type="time" name="Hora" value="00:00">
+                </div>
+                <div>
+                    <h3>Data</h3>
+                    <input type="date" name="Data" value="2017-05-01" min="2017-01-01" max="2050-12-31">
+                </div>
+				<input type="submit" value="Enviar">
+		</form>
+		
+	</body>
+</html>
