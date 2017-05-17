@@ -53,3 +53,17 @@ input[type=submit] {
     width: 100%;
     max-width: 250px;
 }
+
+.informative {
+    max-width: 300px; 
+    text-align: center;
+    background-color: lightblue;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: cornflowerblue;
+    border-style: solid;
+}
+
+.informative a {
+    color: MidnightBlue ;
+}

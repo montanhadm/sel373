@@ -15,24 +15,25 @@
             {% include 'nav.html' %}
         </nav>
         
-        {% if user %}
-        {% else %}
         <form method="post">
-            <h1>Acesse sua conta!</h1>
+            <h1>Cadastro de Novo Usuário</h1>
             <div>
-                <h3>Usuário</h3>
+                <h3>Nome de usuário</h3>
                 <input type="text" name="log_user">
             </div>
             <div>
                 <h3>Senha</h3>
                 <input type="password" name="pass_user">
             </div>
-            <input type="submit" value="Entrar">
+            <div>
+                <h3>Repita a Senha</h3>
+                <input type="password" name="pass_user_confirm">
+            </div>
+            <input type="submit" value="Cadastrar-se">
             <div class="informative">
-                <h4>Não possui conta? <a href="/signup">Cadastre-se aqui!</a></h4>
+                <h4>Já possui uma conta? <br><a href="/">Clique aqui para acessá-la!</a></h4>
             </div>
 		</form>
-        {% endif %}
         
     </body>
 </html>
