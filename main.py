@@ -42,7 +42,9 @@ def new_leitura():
 
 		finally:
 			con.close()
-			return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
+			if 'username' in session:
+				return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
+			return render_template('add_leitura.html', msg=msg)
 			
 	else:
 		return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
@@ -65,7 +67,10 @@ def view_leitura():
 	cur.execute("select * from leituras")
 
 	rows = cur.fetchall()
-	return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
+
+	if 'username' in session:
+		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
+	return render_template('view_leitura.html', rows=rows)
 
 
 if __name__ == '__main__':
