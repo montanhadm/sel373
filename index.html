@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AutoMedidor</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/basic.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto+Condensed:400,400i,700|Titillium+Web:400,400i,700">
+        <meta charset="utf-8">
+    </head>
+    
+    <body>
+        
+        <nav>
+            {% include 'nav.html' %}
+        </nav>
+        
+        {% if user %}
+        {% else %}
+        <form method="post">
+            <h1>Acesse sua conta!</h1>
+            <div>
+                <h3>Usuário</h3>
+                <input type="text" name="log_user">
+            </div>
+            <div>
+                <h3>Senha</h3>
+                <input type="password" name="pass_user">
+            </div>
+            <input type="submit" value="Entrar">
+            <div class="informative">
+                <h4>Não possui conta? <a href="/signup">Cadastre-se aqui!</a></h4>
+            </div>
+		</form>
+        {% endif %}
+        
+    </body>
+</html>
