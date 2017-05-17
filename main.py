@@ -3,7 +3,6 @@ import sqlite3 as sql
 
 app = Flask(__name__)
 app.secret_key = 'SysfCK;U{2~e*\yn!w$%'
-app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon.ico'))
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
