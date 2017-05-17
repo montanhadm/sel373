@@ -1,12 +1,24 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, escape, redirect, url_for
 import sqlite3 as sql
 
 app = Flask(__name__)
+app.secret_key = 'SysfCK;U{2~e*\yn!w$%'
+app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon.ico'))
 
-
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-	return render_template('index.html')
+	if request.method == 'POST':
+		try:
+			session['username'] = request.form['log_user']
+			return redirect(url_for('/add/'))
+			# Tratar se login existe e se senha está correta
+		except:
+			# Tratar exceção
+			return render_template('index.html')
+	else:
+		if 'username' in session:
+			return render_template('index.html', user=escape(session['username']))
+		return render_template('index.html')
 
 
 @app.route('/add/', methods=['POST', 'GET'])
@@ -31,10 +43,18 @@ def new_leitura():
 
 		finally:
 			con.close()
-			return render_template('add_leitura.html', msg=msg)
+			return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
 			
 	else:
 		return render_template('add_leitura.html')
+
+
+@app.route('/signup/')
+def signup():
+	if 'username' in session:
+		return redirect(url_for('/'))
+	else:
+		return render_template('signup.html')
 
 
 @app.route('/view/', methods=['GET'])
@@ -46,8 +66,8 @@ def view_leitura():
 	cur.execute("select * from leituras")
 
 	rows = cur.fetchall()
-	return render_template('view_leitura.html', rows=rows)
+	return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
