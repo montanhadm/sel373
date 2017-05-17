@@ -15,8 +15,7 @@
             {% include 'nav.html' %}
         </nav>
         
-        {% if user %}
-        {% else %}
+        {% if not user %}
         <form method="post">
             <h1>Acesse sua conta!</h1>
             <div>
