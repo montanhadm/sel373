@@ -9,7 +9,7 @@ def index():
 	if request.method == 'POST':
 		try:
 			session['username'] = request.form['log_user']
-			return redirect(url_for('/add/'))
+			return redirect('/add/')
 			# Tratar se login existe e se senha está correta
 		except:
 			# Tratar exceção
@@ -45,7 +45,7 @@ def new_leitura():
 			return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
 			
 	else:
-		return render_template('add_leitura.html')
+		return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
 
 
 @app.route('/signup/')
