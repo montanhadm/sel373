@@ -47,7 +47,7 @@ def new_leitura():
 			return render_template('add_leitura.html', msg=msg)
 			
 	else:
-		return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
+		return render_template('add_leitura.html', user=escape(session['username']))
 
 
 @app.route('/signup/')
