@@ -61,8 +61,8 @@ def signup():
 			confirm_pass = request.form['pass_user_confirm']
 
 			if password == confirm_pass:
-				with sql.connect("database/users.db") as con:
-					cur = con.cursor()
+				con = sql.connect("database/users.db")
+				cur = con.cursor()
 
 				cur.execute("""SELECT COUNT(*) FROM users WHERE USER = ?""", (username))
 				if cur.fetchone()[0] == None:
