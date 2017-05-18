@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto+Condensed:400,400i,700|Titillium+Web:400,400i,700">
         <meta charset="utf-8">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     </head>
     
     <body>
@@ -15,11 +16,41 @@
             {% include 'nav.html' %}
         </nav>
         
+        {% if msg == 1 %}
+            <center>
+                <div id="msg_success">
+                    <h2>Cadastro realizado com sucesso!</h2>
+                </div>
+            <center>
+
+        {% elif msg == 2 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>As senhas digitadas não conferem. Tente novamente.</h2>
+                </div>
+            </center>
+            
+        {% elif msg == 3 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>Este nome de usuário já está em uso.</h2>
+                </div>
+            </center>
+            
+        {% elif msg == 4 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>Ocorreu um erro ao tentar conexão com o servidor. Tente novamente mais tarde.</h2>
+                </div>
+            </center>
+            
+        {% endif %}
+        
         <form method="post">
             <h1>Cadastro de Novo Usuário</h1>
             <div>
                 <h3>Nome de usuário</h3>
-                <input type="text" name="log_user">
+                <input type="text" name="log_user" value="{{saved_user}}">
             </div>
             <div>
                 <h3>Senha</h3>

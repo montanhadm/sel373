@@ -47,15 +47,46 @@ def new_leitura():
 			return render_template('add_leitura.html', msg=msg)
 			
 	else:
-		return render_template('add_leitura.html', user=escape(session['username']))
+		if 'username' in session:
+			return render_template('add_leitura.html', user=escape(session['username']))
+		return render_template('add_leitura.html')
 
 
-@app.route('/signup/')
+@app.route('/signup/', methods=['POST', 'GET'])
 def signup():
-	if 'username' in session:
-		return redirect(url_for('/'))
+	if request.method == 'POST':
+		try:
+			username = request.form['log_user']
+			password = request.form['pass_user']
+			confirm_pass = request.form['pas_user_confirm']
+
+			if password == confirm_pass:
+				with sql.connect("database/users.db") as con:
+					cur = con.cursor()
+
+				cur.execute("""SELECT 1 FROM users WHERE USER = ?""", (username))
+				data = cur.fetchone()
+				if data is None:
+					encrypt_pass = password
+					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
+					con.commit()
+					return render_template('signup.html', msg = 1)
+
+				else:
+					return render_template('signup.html', msg = 3) # usuario existente
+
+			else:
+				return render_template('signup.html', saved_user = username, msg = 2) # as senhas não batem
+
+		except:
+			con.rollback()
+			return render_template('signup.html', msg = 4) # erro ao conectar com SQL
+
 	else:
-		return render_template('signup.html')
+		if 'username' in session:
+			return redirect('/')
+		else:
+			return render_template('signup.html')
 
 
 @app.route('/view/', methods=['GET'])
@@ -71,6 +102,11 @@ def view_leitura():
 	if 'username' in session:
 		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
 	return render_template('view_leitura.html', rows=rows)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect('/'), 404
 
 
 if __name__ == '__main__':
