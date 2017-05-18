@@ -59,13 +59,16 @@ def signup():
 			username = request.form['log_user']
 			password = request.form['pass_user']
 			confirm_pass = request.form['pass_user_confirm']
-
+			print(b0d)
+			
 			if password == confirm_pass:
 				con = sql.connect("database/users.db")
 				cur = con.cursor()
+				print(b1d)
 
 				cur.execute("""SELECT COUNT(*) FROM users WHERE USER = ?""", (username))
 				if cur.fetchone()[0] == None:
+					print(b2d)
 					encrypt_pass = password
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
 					con.commit()
@@ -73,6 +76,7 @@ def signup():
 					return render_template('signup.html', msg = 1)
 
 				else:
+					print(b3d)
 					con.rollback()
 					con.close()
 					return render_template('signup.html', msg = 3) # usuario existente
