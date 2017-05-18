@@ -64,11 +64,9 @@ def signup():
 			if password == confirm_pass:
 				con = sql.connect("database/users.db")
 				cur = con.cursor()
-				print(b1d)
+				cur.execute("""SELECT * FROM users WHERE USER = ?""", (username))
 
-				cur.execute("""SELECT COUNT(*) FROM users WHERE USER = ?""", (username))
-				if cur.fetchone()[0] == None:
-					print(b2d)
+				if cur.fetchone() == None:
 					encrypt_pass = password
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
 					con.commit()
@@ -76,7 +74,6 @@ def signup():
 					return render_template('signup.html', msg = 1)
 
 				else:
-					print(b3d)
 					con.rollback()
 					con.close()
 					return render_template('signup.html', msg = 3) # usuario existente
