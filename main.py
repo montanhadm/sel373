@@ -64,9 +64,8 @@ def signup():
 				with sql.connect("database/users.db") as con:
 					cur = con.cursor()
 
-				cur.execute("""SELECT 1 FROM users WHERE USER = ?""", (username))
-				data = cur.fetchone()
-				if data is None:
+				cur.execute("""SELECT COUNT(*) FROM users WHERE USER = ?""", (username))
+				if cur.fetchone()[0] == None:
 					encrypt_pass = password
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
 					con.commit()
