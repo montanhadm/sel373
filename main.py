@@ -67,6 +67,7 @@ def signup():
 				cur = con.cursor()
 				error_id = 3
 				cur.execute("SELECT COUNT(*) FROM users WHERE USER = ?", (username))
+				error_id = 4
 				quantidade = cur.fetchone()
 
 				if quantidade[0] == 0:
