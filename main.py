@@ -69,7 +69,7 @@ def signup():
 				cur.execute("SELECT COUNT(*) FROM users WHERE USER = ?", (username))
 				quantidade = cur.fetchone()
 
-				if quantidade[0] = 0:
+				if quantidade[0] == 0:
 					encrypt_pass = password
 					error_id = 4
 					cur.execute("INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)", (username, encrypt_pass, 'M'))
