@@ -17,7 +17,7 @@ nav {
 }
 
 .logo {
-    background-image: url("{{ url_for('static', filename='logo.png') }}");
+    background-image: url("../logo.png");
     background-repeat: no-repeat;
     background-position: center;
     width: 210px;
@@ -83,6 +83,11 @@ Media Queries
         margin-left: auto;
         margin-right: 1.0em;
         text-align: right;
+    }
+    
+    li.log_tab {
+        margin-left: auto;
+        margin-right: 1.0em;
     }
     
     nav ul li a {
