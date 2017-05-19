@@ -61,12 +61,10 @@ def signup():
 			confirm_pass = request.form['pass_user_confirm']
 			error_id = 1
 
-			if password == confirm_pass:
-				con = sql.connect("database/users.db")
+			if password == confirm_pass:			
+				with sql.connect("database/database.db") as con:
+					cur = con.cursor()
 				error_id = 2
-				cur = con.cursor()
-				cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (teste, teste, "F"))
-				error_id = 3
 				cur.execute("SELECT COUNT(*) FROM users WHERE USER = ?", (username))
 				error_id = 4
 				quantidade = cur.fetchone()
@@ -124,4 +122,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(host="0.0.0.0")
