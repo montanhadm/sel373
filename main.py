@@ -59,28 +59,38 @@ def signup():
 			username = request.form['log_user']
 			password = request.form['pass_user']
 			confirm_pass = request.form['pass_user_confirm']
-			print(b0d)
-			
+			error_id = 1
+
 			if password == confirm_pass:
 				con = sql.connect("database/users.db")
+				error_id = 2
 				cur = con.cursor()
-				if cur.execute("SELECT count(*) FROM users WHERE USER = ?", (username, )).fetchone()[0] < 1:
+				error_id = 3
+
+				if cur.execute("SELECT count(*) FROM users WHERE USER = ?", (username)).fetchone()[0] < 1:
 					encrypt_pass = password
+					error_id = 4
 					cur.execute("INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)", (username, encrypt_pass, 'M'))
+					error_id = 5
 					con.commit()
+					error_id = 6
 					con.close()
+					error_id = 7
 					return render_template('signup.html', msg = 1)
 
 				else:
 					con.rollback()
+					error_id = 8
 					con.close()
+					error_id = 9
 					return render_template('signup.html', msg = 3) # usuario existente
 
 			else:
+				error_id = 10
 				return render_template('signup.html', saved_user = username, msg = 2) # as senhas não batem
 
 		except:
-			return render_template('signup.html', msg = 4) # erro ao conectar com SQL
+			return render_template('signup.html', msg = 4, error_id = error_id) # erro ao conectar com SQL
 
 	else:
 		if 'username' in session:
