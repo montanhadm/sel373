@@ -66,8 +66,10 @@ def signup():
 				error_id = 2
 				cur = con.cursor()
 				error_id = 3
+				cur.execute("SELECT COUNT(*) FROM users WHERE USER = ?", (username))
+				quantidade = cur.fetchone()
 
-				if cur.execute("SELECT count(*) FROM users WHERE USER = ?", (username)).fetchone()[0] < 1:
+				if quantidade[0] = 0:
 					encrypt_pass = password
 					error_id = 4
 					cur.execute("INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)", (username, encrypt_pass, 'M'))
