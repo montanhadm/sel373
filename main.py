@@ -81,6 +81,9 @@ def signup():
 			if len(username) >= 16 or len(username) <= 4:
 				return render_template('signup.html', msg = 5)
 
+			elif not str.isalnum(username):
+				return render_template('signup.html', msg = 7)
+
 			elif len(password) >= 20 or len(password) <= 4:
 				return render_template('signup.html', msg = 6) 
 
@@ -102,7 +105,7 @@ def signup():
 
 					wcon = sql.connect("database/wtable.db")
 					wcur = wcon.cursor()
-					wcon.execute("""CREATE TABLE ? (VALOR INTEGER, DATA TEXT, HORA TEXT)""", (username,))
+					wcon.execute("CREATE TABLE"+username+"(VALOR INTEGER, DATA TEXT, HORA TEXT)")
 					wcon.close()
 
 					return render_template('signup.html', msg = 1)
