@@ -62,7 +62,7 @@ def signup():
 			error_id = 1
 
 			if password == confirm_pass:			
-				with sql.connect("database/database.db") as con:
+				with sql.connect("database/users.db") as con:
 					cur = con.cursor()
 				error_id = 2
 				cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, password, "F"))
