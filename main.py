@@ -65,7 +65,7 @@ def signup():
 				with sql.connect("database/database.db") as con:
 					cur = con.cursor()
 				error_id = 2
-				cur.execute("INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)", (username, password, 'F'))
+				cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, password, "F"))
 				error_id = 3
 				cur.execute("SELECT COUNT(*) FROM users WHERE USER = ?", (username))
 				error_id = 4
