@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, escape, redirect, url_for
+from passlib.hash import pbkdf2_sha256
 import sqlite3 as sql
 
 app = Flask(__name__)
@@ -61,8 +62,11 @@ def signup():
 			confirm_pass = request.form['pass_user_confirm']
 			error_id = 1
 
-			if len(username) > 16:
+			if len(username) >= 16 or len(username) <= 4:
 				return render_template('signup.html', msg = 5)
+
+			elif len(password) >= 20 or len(password) <= 4:
+				return render_template('signup.html', msg = 6) 
 
 			elif password == confirm_pass:			
 				with sql.connect("database/users.db") as con:
@@ -73,7 +77,7 @@ def signup():
 				error_id = 3
 
 				if cur.fetchone() == None:
-					encrypt_pass = password
+					encrypt_pass = pbkdf2_sha256.hash(password)
 					error_id = 4
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
 					error_id = 5

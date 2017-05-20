@@ -48,7 +48,14 @@
         {% elif msg == 5 %}
             <center>
                 <div id="msg_failed">
-                    <h2>O nome de usuário não deve possuir mais que 16 caracteres.</h2>
+                    <h2>O nome de usuário deve possuir entre 4 a 16 caracteres.</h2>
+                </div>
+            </center>
+            
+        {% elif msg == 6 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>A senha deve possuir entre 4 a 20 caracteres.</h2>
                 </div>
             </center>
     
