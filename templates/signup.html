@@ -45,6 +45,13 @@
                 </div>
             </center>
             
+        {% elif msg == 5 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>O nome de usuário não deve possuir mais que 16 caracteres.</h2>
+                </div>
+            </center>
+    
         {% endif %}
         
         <form method="post">
