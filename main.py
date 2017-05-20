@@ -22,7 +22,7 @@ def index():
 
 			error = 4
 
-			if pbkdf2_sha256.verify(password, userdata):
+			if pbkdf2_sha256.verify(password, userdata[0]):
 				error = 1
 				session['username'] = username
 				error = 2
