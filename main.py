@@ -44,34 +44,36 @@ def index():
 
 @app.route('/add/', methods=['POST', 'GET'])
 def new_leitura():
-	if request.method == 'POST':
-		try:
-			data = request.form['Data']
-			hora = request.form['Hora']
-			valor = request.form['Valor']
+	if 'username' in session:
 
-			with sql.connect("database/database.db") as con:
-				cur = con.cursor()
+		if request.method == 'POST':
+			try:
+				data = request.form['Data']
+				hora = request.form['Hora']
+				valor = request.form['Valor']
+				user = session['username']
 
-			cur.execute("""INSERT INTO leituras (DATA, HORA, VALOR) VALUES (?,?,?)""", (data, hora, valor))
+				with sql.connect("database/winput.db") as con:
+					cur = con.cursor()
 
-			con.commit()
-			msg = 1
+				cur.execute("""INSERT INTO leituras (DATA, HORA, VALOR, USER) VALUES (?,?,?,?)""", (data, hora, valor, user))
 
-		except:
-			con.rollback()
-			msg = 2
+				con.commit()
+				msg = 1
 
-		finally:
-			con.close()
-			if 'username' in session:
+			except:
+				con.rollback()
+				msg = 2
+
+			finally:
+				con.close()
 				return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
-			return render_template('add_leitura.html', msg=msg)
 			
-	else:
-		if 'username' in session:
+		else:
 			return render_template('add_leitura.html', user=escape(session['username']))
-		return render_template('add_leitura.html')
+
+	else:
+		return redirect('/')
 
 
 @app.route('/signup/', methods=['POST', 'GET'])
@@ -108,11 +110,6 @@ def signup():
 					con.commit()
 					con.close()
 
-					#wcon = sql.connect("database/wtable.db")
-					#wcur = wcon.cursor()
-					#wcon.execute("CREATE TABLE"+username+"(VALOR INTEGER, DATA TEXT, HORA TEXT)")
-					#wcon.close()
-
 					return render_template('signup.html', msg = 1)
 
 				else:
@@ -137,17 +134,20 @@ def signup():
 
 @app.route('/view/', methods=['GET'])
 def view_leitura():
-	con = sql.connect("database/database.db")
-	con.row_factory = sql.Row
-
-	cur = con.cursor()
-	cur.execute("SELECT * FROM leituras")
-
-	rows = cur.fetchall()
-
 	if 'username' in session:
+		user = session['username']
+		con = sql.connect("database/winput.db")
+		con.row_factory = sql.Row
+
+		cur = con.cursor()
+		cur.execute("SELECT * FROM leituras WHERE USER = ?", (user,))
+
+		rows = cur.fetchall()
+
 		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
-	return render_template('view_leitura.html', rows=rows)
+
+	else:
+		return redirect('/')
 
 
 @app.errorhandler(404)
