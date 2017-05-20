@@ -66,7 +66,7 @@ def signup():
 					cur = con.cursor()
 
 				error_id = 2
-				cur.execute("""SELECT * FROM users WHERE USER = '?'""", (username))
+				cur.execute("SELECT * FROM users WHERE USER = ?", (username,))
 				error_id = 4
 
 				if cur.fetchone == None:
