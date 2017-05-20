@@ -118,7 +118,7 @@ def view_leitura():
 	return render_template('view_leitura.html', rows=rows)
 
 @app.route('/admin/', methods=['GET'])
-def view_leitura():
+def view_admin():
 	con = sql.connect("database/users.db")
 	con.row_factory = sql.Row
 
