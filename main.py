@@ -9,9 +9,25 @@ app.secret_key = 'SysfCK;U{2~e*\yn!w$%'
 def index():
 	if request.method == 'POST':
 		try:
-			session['username'] = request.form['log_user']
-			return redirect('/add/')
-			# Tratar se login existe e se senha está correta
+			username = request.form['log_user']
+			password = request.form['pass_user']
+
+			con = sql.connect("database/users.db")
+			cur = con.cursor()
+			cur.execute("SELECT PASS FROM users WHERE USER = ?", (username,))
+			userdata = cur.fetchone()
+
+			if userdata == None:
+				return render_template('index.html', msg=1)
+
+			if pbkdf2_sha256.verify(password, userdata):
+				session['username'] = username
+				return redirect('/add/')
+
+			else:
+				return render_template('index.html', msg=2)
+
+			# Tratar bruteforce!
 		except:
 			# Tratar exceção
 			return render_template('index.html')
@@ -82,9 +98,13 @@ def signup():
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
 					error_id = 5
 					con.commit()
-					error_id = 6
 					con.close()
-					error_id = 7
+
+					wcon = sql.connect("database/wtable.db")
+					wcur = wcon.cursor()
+					wcon.execute("""CREATE TABLE ? (VALOR INTEGER, DATA TEXT, HORA TEXT)""", (username,))
+					wcon.close()
+
 					return render_template('signup.html', msg = 1)
 
 				else:
@@ -113,7 +133,7 @@ def view_leitura():
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
-	cur.execute("select * from leituras")
+	cur.execute("SELECT * FROM leituras")
 
 	rows = cur.fetchall()
 
@@ -121,19 +141,6 @@ def view_leitura():
 		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
 	return render_template('view_leitura.html', rows=rows)
 
-@app.route('/admin/', methods=['GET'])
-def view_admin():
-	con = sql.connect("database/users.db")
-	con.row_factory = sql.Row
-
-	cur = con.cursor()
-	cur.execute("select * from users")
-
-	rows = cur.fetchall()
-
-	if 'username' in session:
-		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
-	return render_template('view_leitura.html', rows=rows)
 
 @app.errorhandler(404)
 def page_not_found(e):

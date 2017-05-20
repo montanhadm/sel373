@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/basic.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/system_msg.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto+Condensed:400,400i,700|Titillium+Web:400,400i,700">
         <meta charset="utf-8">
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -16,6 +17,21 @@
             {% include 'nav.html' %}
         </nav>
         
+        {% if msg == 1 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>Usuário ainda não registrado.</h2>
+                </div>
+            <center>
+            
+        {% elif msg == 1 %}
+            <center>
+                <div id="msg_failed">
+                    <h2>Senha incorreta.</h2>
+                </div>
+            <center>
+        {% endif % }
+            
         {% if not user %}
         <form method="post">
             <h1>Acesse sua conta</h1>
