@@ -65,7 +65,7 @@ def signup():
 				with sql.connect("database/users.db") as con:
 					cur = con.cursor()
 				error_id = 2
-				cur.execute("""SELECT COUNT(*) FROM users WHERE USER = ?""", (username))
+				cur.execute("""SELECT count(*) FROM users WHERE USER = '?'""", (username))
 				error_id = 4
 				quantidade = cur.fetchone()
 
