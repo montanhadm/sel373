@@ -69,7 +69,7 @@ def signup():
 				cur.execute("SELECT * FROM users WHERE USER = ?", (username,))
 				error_id = 4
 
-				if cur.fetchone == None:
+				if cur.fetchone() == None:
 					encrypt_pass = password
 					error_id = 4
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
