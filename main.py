@@ -20,6 +20,8 @@ def index():
 			if userdata == None:
 				return render_template('index.html', msg=1)
 
+			error = 4
+
 			if pbkdf2_sha256.verify(password, userdata):
 				error = 1
 				session['username'] = username
@@ -28,12 +30,12 @@ def index():
 
 			else:
 				error = 3
-				return render_template('index.html', msg=2, error=error)
+				return render_template('index.html', msg=2)
 
 			# Tratar bruteforce!
 		except:
 			# Tratar exceção
-			return render_template('index.html')
+			return render_template('index.html', error=error)
 	else:
 		if 'username' in session:
 			return render_template('index.html', user=escape(session['username']))
