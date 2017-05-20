@@ -61,13 +61,16 @@ def signup():
 			confirm_pass = request.form['pass_user_confirm']
 			error_id = 1
 
-			if password == confirm_pass:			
+			if len(username) > 16:
+
+
+			elif password == confirm_pass:			
 				with sql.connect("database/users.db") as con:
 					cur = con.cursor()
 
 				error_id = 2
 				cur.execute("SELECT * FROM users WHERE USER = ?", (username,))
-				error_id = 4
+				error_id = 3
 
 				if cur.fetchone() == None:
 					encrypt_pass = password
@@ -88,7 +91,6 @@ def signup():
 					return render_template('signup.html', msg = 3) # usuario existente
 
 			else:
-				error_id = 10
 				return render_template('signup.html', saved_user = username, msg = 2) # as senhas não batem
 
 		except:
@@ -115,6 +117,19 @@ def view_leitura():
 		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
 	return render_template('view_leitura.html', rows=rows)
 
+@app.route('/admin/', methods=['GET'])
+def view_leitura():
+	con = sql.connect("database/users.db")
+	con.row_factory = sql.Row
+
+	cur = con.cursor()
+	cur.execute("select * from users")
+
+	rows = cur.fetchall()
+
+	if 'username' in session:
+		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
+	return render_template('view_leitura.html', rows=rows)
 
 @app.errorhandler(404)
 def page_not_found(e):
