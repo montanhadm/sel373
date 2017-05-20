@@ -64,12 +64,12 @@ def signup():
 			if password == confirm_pass:			
 				with sql.connect("database/users.db") as con:
 					cur = con.cursor()
-				error_id = 2
-				cur.execute("""SELECT count(*) FROM users WHERE USER = '?'""", (username))
-				error_id = 4
-				quantidade = cur.fetchone()
 
-				if quantidade[0] == 0:
+				error_id = 2
+				cur.execute("""SELECT * FROM users WHERE USER = '?'""", (username))
+				error_id = 4
+
+				if cur.fetchone == None:
 					encrypt_pass = password
 					error_id = 4
 					cur.execute("""INSERT INTO users (USER, PASS, GENDER) VALUES (?,?,?)""", (username, encrypt_pass, 'M'))
