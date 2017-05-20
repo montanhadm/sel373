@@ -62,7 +62,7 @@ def signup():
 			error_id = 1
 
 			if len(username) > 16:
-
+				return render_template('signup.html', msg = 5)
 
 			elif password == confirm_pass:			
 				with sql.connect("database/users.db") as con:
