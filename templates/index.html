@@ -24,13 +24,15 @@
                 </div>
             <center>
             
-        {% elif msg == 1 %}
+        {% elif msg == 2 %}
             <center>
                 <div id="msg_failed">
                     <h2>Senha incorreta.</h2>
                 </div>
             <center>
         {% endif %}
+           
+        {{error}}
             
         {% if not user %}
         <form method="post">

@@ -21,11 +21,14 @@ def index():
 				return render_template('index.html', msg=1)
 
 			if pbkdf2_sha256.verify(password, userdata):
+				error = 1
 				session['username'] = username
+				error = 2
 				return redirect('/add/')
 
 			else:
-				return render_template('index.html', msg=2)
+				error = 3
+				return render_template('index.html', msg=2, error=error)
 
 			# Tratar bruteforce!
 		except:
@@ -103,10 +106,10 @@ def signup():
 					con.commit()
 					con.close()
 
-					wcon = sql.connect("database/wtable.db")
-					wcur = wcon.cursor()
-					wcon.execute("CREATE TABLE"+username+"(VALOR INTEGER, DATA TEXT, HORA TEXT)")
-					wcon.close()
+					#wcon = sql.connect("database/wtable.db")
+					#wcur = wcon.cursor()
+					#wcon.execute("CREATE TABLE"+username+"(VALOR INTEGER, DATA TEXT, HORA TEXT)")
+					#wcon.close()
 
 					return render_template('signup.html', msg = 1)
 
