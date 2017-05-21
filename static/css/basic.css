@@ -1,6 +1,7 @@
 body{
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
     background-color: aliceblue;
+    max-width: 400px;
 }
 
 h1 {
@@ -59,41 +60,45 @@ Media Queries
 */
 
 @media screen
-    and (min-width: 500px) 
+    and (min-width: 400px) 
     and (min-device-width: 1000px) {
         
-    nav {
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-    
-    .logo {
-        margin-left: 10px;
-    }
-    
-    nav ul {
-        flex-direction: row;
-        width: 100%;
-        margin: auto;
-    }
-    
-    nav ul li {
-        padding: 0px 8px;
-        width: auto;
-    }
-    
-    li.logged {
-        margin-left: auto;
-        margin-right: 1.0em;
-        text-align: right;
-    }
-    
-    li.log_tab {
-        margin-left: auto;
-        margin-right: 1.0em;
-    }
-    
-    nav ul li a {
-        width: auto;
-    }
+        body {
+            max-width: none;
+        }
+        
+        nav {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+
+        nav ul {
+            flex-direction: row;
+            width: 100%;
+            margin: auto;
+        }
+
+        nav ul li {
+            padding: 0px 8px;
+            width: auto;
+        }
+
+        li.logged {
+            margin-left: auto;
+            margin-right: 1.0em;
+            text-align: right;
+        }
+
+        li.log_tab {
+            margin-left: auto;
+            margin-right: 1.0em;
+        }
+
+        nav ul li a {
+            width: auto;
+        }
 }
