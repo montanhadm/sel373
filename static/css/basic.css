@@ -1,7 +1,10 @@
+html {
+    max-width: 500px;
+}
+
 body{
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
     background-color: aliceblue;
-    max-width: 400px;
 }
 
 h1 {
@@ -60,10 +63,10 @@ Media Queries
 */
 
 @media screen
-    and (min-width: 400px) 
+    and (min-width: 500px) 
     and (min-device-width: 1000px) {
         
-        body {
+        html {
             max-width: none;
         }
         
