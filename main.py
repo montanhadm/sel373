@@ -42,6 +42,13 @@ def index():
 		return render_template('index.html')
 
 
+@app.route('/logout/')
+def logout():
+	if 'username' in session:
+		session.pop('username', None)
+	return redirect('/')
+
+
 @app.route('/add/', methods=['POST', 'GET'])
 def new_leitura():
 	if 'username' in session:
