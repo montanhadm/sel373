@@ -95,13 +95,13 @@ def signup():
 			confirm_pass = request.form['pass_user_confirm']
 			error_id = 1
 
-			if len(username) >= 16 or len(username) <= 4:
+			if len(username) > 16 or len(username) < 4:
 				return render_template('signup.html', msg = 5)
 
 			elif not str.isalnum(username):
 				return render_template('signup.html', msg = 7)
 
-			elif len(password) >= 20 or len(password) <= 4:
+			elif len(password) > 20 or len(password) < 4:
 				return render_template('signup.html', msg = 6) 
 
 			elif password == confirm_pass:			
