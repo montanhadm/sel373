@@ -2,6 +2,8 @@ form {
     padding-bottom: 1em;
     display: flex;
     flex-direction: column;
+    max-width: 400px;
+    margin: auto;
 }
 
 h3 {
@@ -66,4 +68,10 @@ input[type=submit] {
 
 .informative a {
     color: MidnightBlue ;
+}
+
+@media screen
+    and (min-width: 500px) 
+    and (min-device-width: 1000px) {
+        
 }

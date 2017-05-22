@@ -1,6 +1,6 @@
 div[id="msg_success"], div[id="msg_failed"]{
     width: auto;
-    max-width: 450px;
+    max-width: 400px;
     border-radius: 6px;
     margin-left: 10px;
     margin-right: 10px;
@@ -21,4 +21,17 @@ div[id="msg_success"] h2, div[id="msg_failed"] h2{
     font-size: 16px;
     font-weight: 400;
     padding: 1em;
+}
+
+@media screen
+    and (min-width: 500px) 
+    and (min-device-width: 1000px) {
+        
+        div[id="msg_success"], div[id="msg_failed"]{
+            width: auto;
+            max-width: 450px;
+            border-radius: 6px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
 }

@@ -1,6 +1,7 @@
 body{
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
     background-color: aliceblue;
+    max-width: 450px;
 }
 
 h1 {
@@ -17,7 +18,7 @@ nav {
 }
 
 .logo {
-    background-image: url("../logo3.png");
+    background-image: url("../logo_azulalice.png");
     background-repeat: no-repeat;
     background-position: center;
     width: 210px;
@@ -63,7 +64,7 @@ Media Queries
     and (min-device-width: 1000px) {
     
         
-        html {
+        body {
             max-width: none;
         }
         
