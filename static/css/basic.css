@@ -1,21 +1,7 @@
-html {
-    height: 100%;
-    box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 body{
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
     background-color: aliceblue;
     max-width: 450px;
-    margin: 0;
-    padding-bottom: 5rem;
-    min-height: 100%;
 }
 
 h1 {
@@ -84,10 +70,6 @@ footer {
     color: aliceblue;
     text-align: center;
     font-family: "Titillium Web", Helvetica, Arial, sans-serif;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
     cursor: default;
 }
 
@@ -99,9 +81,22 @@ Media Queries
     and (min-width: 500px) 
     and (min-device-width: 1000px) {
     
+        html {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
         
         body {
             max-width: none;
+            margin: 0;
+            padding-bottom: 5rem;
+            min-height: 100%;
         }
         
         nav {
@@ -138,5 +133,12 @@ Media Queries
 
         nav ul li a {
             width: auto;
+        }
+        
+        footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
         }
 }
