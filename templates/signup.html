@@ -2,21 +2,14 @@
 <html>
     <head>
         <title>Cadastre-se</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/basic.css') }}">
+        {% include 'includer.html' %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/system_msg.css') }}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto+Condensed:400,400i,700|Titillium+Web:400,400i,700">
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
     <body>
         
-        <nav>
-            {% include 'nav.html' %}
-        </nav>
+        <nav>{% include 'nav.html' %}</nav>
         
         {% if msg == 1 %}
             <center>
@@ -88,6 +81,8 @@
                 <h4>Já possui uma conta? <br><a href="/">Clique aqui para acessá-la!</a></h4>
             </div>
 		</form>
+       
+       <footer>{% include 'footer.html' %}</footer>
         
     </body>
 </html>
