@@ -35,7 +35,6 @@ def index():
 
 			# Tratar bruteforce!
 		except:
-			# Tratar exceção
 			return render_template('index.html', error=error)
 	else:
 		if 'username' in session:
