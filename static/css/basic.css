@@ -23,6 +23,7 @@ h1 {
     text-align: center;
     font-family: "Titillium Web", Helvetica, Arial, sans-serif;
     color: #2f2f2f;
+    cursor: default;
 }
 
 nav {
@@ -64,10 +65,18 @@ nav ul li a {
     color: aliceblue
 }
 
+nav ul li a:hover {
+    background-color: #739fee;
+}
+
 .logged {
     font-size: 12px;
     color: aliceblue;
     padding-top: 0.9em;
+}
+
+.logged a {
+    margin-top: 5px;
 }
 
 footer {
@@ -79,6 +88,7 @@ footer {
     right: 0;
     bottom: 0;
     left: 0;
+    cursor: default;
 }
 
 /*
@@ -118,6 +128,7 @@ Media Queries
             margin-left: auto;
             margin-right: 1.0em;
             text-align: right;
+            cursor: default;
         }
 
         li.log_tab {

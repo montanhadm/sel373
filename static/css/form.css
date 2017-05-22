@@ -11,6 +11,7 @@ h3 {
     width: auto;
     margin: 0em 0px 0.1em 0.2em;
     padding-right: 7px;
+    cursor: default;
 }
 
 form div {
@@ -64,14 +65,14 @@ input[type=submit] {
     border-width: 1px;
     border-color: cornflowerblue;
     border-style: solid;
+    cursor: default;
 }
 
 .informative a {
     color: MidnightBlue ;
 }
 
-@media screen
-    and (min-width: 500px) 
-    and (min-device-width: 1000px) {
-        
+input[type=submit]:hover {
+    background-color: #3b8b2a;
 }
+
