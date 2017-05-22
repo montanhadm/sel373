@@ -1,7 +1,21 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body{
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
     background-color: aliceblue;
     max-width: 450px;
+    margin: 0;
+    padding-bottom: 5rem;
+    min-height: 100%;
 }
 
 h1 {
@@ -61,11 +75,10 @@ footer {
     color: aliceblue;
     text-align: center;
     font-family: "Titillium Web", Helvetica, Arial, sans-serif;
-}
-
-footer p {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 /*
