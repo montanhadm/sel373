@@ -130,7 +130,7 @@ def signup():
 					return render_template('signup.html', msg = 3) # usuario existente
 
 			else:
-				return render_template('signup.html', saved_user = username, msg = 2) # as senhas não batem
+				return render_template('signup.html', saved_user = username, msg = 2) # as senhas nao batem
 
 		except:
 			return render_template('signup.html', msg = 4, error_id = error_id) # erro ao conectar com SQL
