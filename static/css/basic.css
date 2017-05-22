@@ -55,6 +55,20 @@ nav ul li a {
     padding-top: 0.9em;
 }
 
+footer {
+    background-color: cornflowerblue;
+    color: aliceblue;
+    text-align: center;
+    font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+footer p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 /*
 Media Queries
 */
