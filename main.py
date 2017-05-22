@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, escape, redirect, url_for
 from passlib.hash import pbkdf2_sha256
 import sqlite3 as sql
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'SysfCK;U{2~e*\yn!w$%'
@@ -77,7 +78,10 @@ def new_leitura():
 				return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
 			
 		else:
-			return render_template('add_leitura.html', user=escape(session['username']))
+			now = datetime.now()
+			time = str(now.hour) + str(now.minute) + str(now.second)
+			date = str(now.year) + str(now.month) + str(now.day)
+			return render_template('add_leitura.html', user=escape(session['username']), nowtime=time, nowdate=date)
 
 	else:
 		return redirect('/')
