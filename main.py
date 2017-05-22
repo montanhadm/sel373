@@ -79,8 +79,8 @@ def new_leitura():
 			
 		else:
 			now = datetime.now()
-			time = str(now.hour) + str(now.minute) + str(now.second)
-			date = str(now.year) + str(now.month) + str(now.day)
+			time = str(now.hour) + ":" + str(now.minute)
+			date = str(now.year) + "-" + str(now.month) + "-" + str(now.day)
 			return render_template('add_leitura.html', user=escape(session['username']), nowtime=time, nowdate=date)
 
 	else:
