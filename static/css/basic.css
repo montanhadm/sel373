@@ -72,6 +72,8 @@ footer {
     font-family: "Titillium Web", Helvetica, Arial, sans-serif;
     cursor: default;
     font-size: 10pt;
+    padding-bottom: 5pt; 
+    padding-top: 5pt;
 }
 
 /*
@@ -141,5 +143,7 @@ Media Queries
             right: 0;
             bottom: 0;
             left: 0;
+            padding-bottom: 0pt; 
+            padding-top: 0pt;
         }
 }
