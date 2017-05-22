@@ -8,6 +8,7 @@ h1 {
     font-size: 25px;
     text-align: center;
     font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+    color: #2f2f2f;
 }
 
 nav {
@@ -60,8 +61,6 @@ footer {
     color: aliceblue;
     text-align: center;
     font-family: "Titillium Web", Helvetica, Arial, sans-serif;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
 }
 
 footer p {
