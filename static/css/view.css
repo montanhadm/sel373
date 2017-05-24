@@ -1,6 +1,6 @@
 #tabs {
     width: 100%;
-    background-color: #c1d4f7;
+    background-color: rgba(193,212,247,0.7);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,6 @@
 .tab{
     padding: 0.3em 1em;
     color: #283B5E;
-    background-color: #c1d4f7;
     text-decoration: none;
     border-bottom-color: #283B5E;
     border-bottom-style: solid;
