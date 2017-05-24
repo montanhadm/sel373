@@ -10,7 +10,14 @@
 	
         <nav>{% include 'nav.html' %}</nav>
         
-        <center>
+        <div id="tabs">
+            <a href="/view/table" class="tab selected">Tabela de Medições</a>
+            <a href="/view/chart" class="tab">Gráfico de Consumo</a>
+            <a href="/view/estimate" class="tab">Estimativas</a>
+            <a href="/view/statistics" class="tab">Estatísticas</a>
+        </div>
+        
+        <div id=main>
             <table>
                 <thead>
                     <td>Valor Medido</td>
@@ -26,7 +33,7 @@
                 </tr>
                 {% endfor %}
             </table>
-        </center>
+        </div>
         
         <footer>{% include 'footer.html' %}</footer>
 		

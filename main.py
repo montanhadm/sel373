@@ -141,9 +141,15 @@ def signup():
 		else:
 			return render_template('signup.html')
 
-
 @app.route('/view/', methods=['GET'])
-def view_leitura():
+def visualizador():
+	if 'username' in session:
+		return redirect('/view/table')
+	else:
+		return redirect('/')
+
+@app.route('/view/table', methods=['GET'])
+def view_table():
 	if 'username' in session:
 		user = session['username']
 		con = sql.connect("database/winput.db")
@@ -160,10 +166,32 @@ def view_leitura():
 		return redirect('/')
 
 
+@app.route('/view/chart', methods=['GET'])
+def visualizador():
+	if 'username' in session:
+		return redirect('/view/table')
+	else:
+		return redirect('/')
+
+@app.route('/view/estimate', methods=['GET'])
+def visualizador():
+	if 'username' in session:
+		return redirect('/view/table')
+	else:
+		return redirect('/')
+
+@app.route('/view/statistics', methods=['GET'])
+def visualizador():
+	if 'username' in session:
+		return redirect('/view/table')
+	else:
+		return redirect('/')
+
+
 @app.errorhandler(404)
-def page_not_found(e):
-    return redirect('/'), 404
+def page_not_found():
+    return redirect('/')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port="80")
