@@ -148,7 +148,7 @@ def visualizador():
 	else:
 		return redirect('/')
 
-@app.route('/view/table', methods=['GET'])
+@app.route('/view/table/', methods=['GET'])
 def view_table():
 	if 'username' in session:
 		user = session['username']
@@ -166,22 +166,24 @@ def view_table():
 		return redirect('/')
 
 
-@app.route('/view/chart', methods=['GET'])
-def visualizador():
+@app.route('/view/chart/', methods=['GET'])
+def view_chart():
 	if 'username' in session:
 		return redirect('/view/table')
 	else:
 		return redirect('/')
 
-@app.route('/view/estimate', methods=['GET'])
-def visualizador():
+
+@app.route('/view/estimate/', methods=['GET'])
+def view_estimate():
 	if 'username' in session:
 		return redirect('/view/table')
 	else:
 		return redirect('/')
+		
 
-@app.route('/view/statistics', methods=['GET'])
-def visualizador():
+@app.route('/view/statistics/', methods=['GET'])
+def view_statistics():
 	if 'username' in session:
 		return redirect('/view/table')
 	else:
