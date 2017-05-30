@@ -156,7 +156,7 @@ def view_table():
 		con.row_factory = sql.Row
 
 		cur = con.cursor()
-		cur.execute("SELECT * FROM leituras WHERE USER = ?", (user,))
+		cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA, HORA DESC", (user,))
 
 		rows = cur.fetchall()
 
