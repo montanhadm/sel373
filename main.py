@@ -74,7 +74,7 @@ def new_leitura():
 
 			finally:
 				con.close()
-				return render_template('add_leitura.html', msg=msg, user=escape(session['username']))
+				return render_template('add_leitura.html', msg=msg, user=escape(session['username']), nowtime=time, nowdate=date)
 			
 		else:
 			now = datetime.now()
@@ -156,7 +156,7 @@ def view_table():
 		con.row_factory = sql.Row
 
 		cur = con.cursor()
-		cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA, HORA DESC", (user,))
+		cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
 
 		rows = cur.fetchall()
 
