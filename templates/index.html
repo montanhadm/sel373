@@ -24,6 +24,13 @@
                     <h2>Senha incorreta.</h2>
                 </div>
             </center>
+            
+        {% elif msg == 100 %}
+            <center>
+                <div id="msg_success">
+                    <h2>Cadastro realizado com sucesso!</h2>
+                </div>
+            </center>
         {% endif %}
            
         {{error}}

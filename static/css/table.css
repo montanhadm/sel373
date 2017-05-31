@@ -25,3 +25,20 @@ tr:nth-child(even) {
 tbody tr:hover {
     background-color: #d0dff9;
 }
+
+a[id="delete"] {
+    cursor: pointer;
+    margin: 0px;
+    text-indent: 0px;
+    padding: 2px;
+    width: auto;
+    color: indianred;
+    background-color: transparent;
+    font-size: 14px;
+    text-decoration: none;
+    
+}
+
+a[id="delete"]:hover {
+    background-color: transparent;
+}

@@ -55,6 +55,7 @@ input[type=submit] {
     align-self: center;
     width: 100%;
     max-width: 250px;
+    text-indent: 0px;
 }
 
 .informative {

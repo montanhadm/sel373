@@ -120,7 +120,7 @@ def signup():
 					con.commit()
 					con.close()
 
-					return render_template('signup.html', msg = 1)
+					return render_template('index.html', msg = 100)
 
 				else:
 					con.rollback()
@@ -173,6 +173,23 @@ def view_chart():
 	else:
 		return redirect('/')
 
+@app.route('/remove/<row_id>')
+def remove_row(row_id):
+	if isistance(row_id, int) and 'username' in session:
+		user = session['username']
+		con = sql.connect("database/winput.db")
+		cur = con.cursor()
+		cur.execute("SELECT * FROM leituras WHERE ID = ?", (row_id,))
+
+		row = cur.fetchone()
+		if row["USER"] = user:
+			cur.execute("DELETE FROM leituras WHERE ID = ?", (row_id,))
+			return redirect('/view/table/')
+		else:
+			return redirect('/view/table/')
+
+	else: 
+		return redirect('/')
 
 @app.route('/view/estimate/', methods=['GET'])
 def view_estimate():
