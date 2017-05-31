@@ -33,7 +33,7 @@ a[id="delete"] {
     padding: 2px;
     width: auto;
     color: indianred;
-    background-color: white;
+    background-color: transparent;
     font-size: 14px;
     text-decoration: none !important;
 }
