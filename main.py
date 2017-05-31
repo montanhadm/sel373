@@ -174,7 +174,7 @@ def view_chart():
 	else:
 		return redirect('/')
 
-@app.route('/remove/<row_id>')
+@app.route('/remove/<int:row_id>')
 def remove_row(row_id):
 	if 'username' in session:
 		user = session['username']
@@ -183,15 +183,15 @@ def remove_row(row_id):
 		cur.execute("SELECT * FROM leituras WHERE ID = ?", (row_id,))
 		row = cur.fetchone()
 
-		#if row["USER"] == user:
-		cur.execute("DELETE FROM leituras WHERE ID = ?", (row_id,))
-		con.commit()
-		con.close()
-		return redirect('/view/table/')
+		if row[3] == user:
+			cur.execute("DELETE FROM leituras WHERE ID = ?", (row_id,))
+			con.commit()
+			con.close()
+			return redirect('/view/table/')
 
-		#else:
-			#con.close()
-			#return redirect('/view/table/')
+		else:
+			con.close()
+			return redirect('/view/table/')
 
 	else: 
 		return redirect('/')
