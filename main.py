@@ -59,6 +59,10 @@ def new_leitura():
 				hora = request.form['Hora']
 				valor = request.form['Valor']
 				user = session['username']
+				
+				now = datetime.now()
+				time = "{:02d}:{:02d}".format(now.hour, now.minute)
+				date = "{}-{:02d}-{:02d}".format(now.year, now.month, now.day)
 
 				with sql.connect("database/winput.db") as con:
 					cur = con.cursor()
