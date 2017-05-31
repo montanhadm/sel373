@@ -175,7 +175,7 @@ def view_chart():
 
 @app.route('/remove/<row_id>')
 def remove_row(row_id):
-	if isistance(row_id, int) and 'username' in session:
+	if isinstance(row_id, int) and 'username' in session:
 		user = session['username']
 		con = sql.connect("database/winput.db")
 		cur = con.cursor()
