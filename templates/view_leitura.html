@@ -5,6 +5,8 @@
         {% include 'includer.html' %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/view.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/filter.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}"
     </head>
     
 	<body>
@@ -18,7 +20,46 @@
             <a href="/view/statistics" class="tab">Estatísticas</a>
         </div>
         
+        
+        
         <center>
+            <form method="post">
+                <div class="menu_list">
+
+                    <select name="dia">
+                        <option value="dia">Dia</option>
+                        {% for dia in range(1,32) %}
+                        <option value="{{dia}}">{{dia}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select name="mes">
+                        <option value="mes">Mês</option>
+                        <option value="01">Jan</option>
+                        <option value="02">Fev</option>
+                        <option value="03">Mar</option>
+                        <option value="04">Abr</option>
+                        <option value="05">Mai</option>
+                        <option value="06">Jun</option>
+                        <option value="07">Jul</option>
+                        <option value="08">Ago</option>
+                        <option value="09">Set</option>
+                        <option value="10">Out</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dez</option>
+                    </select>
+
+                    <select name="ano">
+                        <option value="ano">Ano</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                    </select>
+
+                    <input id="filter" type="submit" value="Filtrar">
+                </div>
+            </form>
+            
             <table>
                 <thead>
                     <td>Valor Medido</td>

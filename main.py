@@ -149,20 +149,41 @@ def visualizador():
 	else:
 		return redirect('/')
 
-@app.route('/view/table/', methods=['GET'])
+@app.route('/view/table/', methods=['GET', 'POST'])
 def view_table():
 	if 'username' in session:
+
 		user = session['username']
 		con = sql.connect("database/winput.db")
 		con.row_factory = sql.Row
-
 		cur = con.cursor()
-		cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
 
-		rows = cur.fetchall()
+		if request.method == 'GET':
+			cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
 
-		return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
+			rows = cur.fetchall()
 
+			return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
+
+		else:
+			ano = request.form['ano']
+			mes = request.form['mes']
+			dia = request.form['dia']
+			if ano != 'ano':
+				if mes != 'mes':
+					if dia != 'dia':
+						search = "{}-{}-{}".format(ano, mes.zfill(2), dia.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND DATA = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+					else:
+						search = "{}-{}".format(ano,mes.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+				else:
+					cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (user, ano))
+			else:
+				cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
+
+			rows = cur.fetchall()
+			return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
 	else:
 		return redirect('/')
 
