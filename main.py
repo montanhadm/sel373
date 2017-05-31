@@ -53,16 +53,16 @@ def logout():
 def new_leitura():
 	if 'username' in session:
 
+		now = datetime.now()
+		time = "{:02d}:{:02d}".format(now.hour, now.minute)
+		date = "{}-{:02d}-{:02d}".format(now.year, now.month, now.day)
+
 		if request.method == 'POST':
 			try:
 				data = request.form['Data']
 				hora = request.form['Hora']
 				valor = request.form['Valor']
 				user = session['username']
-				
-				now = datetime.now()
-				time = "{:02d}:{:02d}".format(now.hour, now.minute)
-				date = "{}-{:02d}-{:02d}".format(now.year, now.month, now.day)
 
 				with sql.connect("database/winput.db") as con:
 					cur = con.cursor()
@@ -81,9 +81,6 @@ def new_leitura():
 				return render_template('add_leitura.html', msg=msg, user=escape(session['username']), nowtime=time, nowdate=date)
 			
 		else:
-			now = datetime.now()
-			time = "{:02d}:{:02d}".format(now.hour, now.minute)
-			date = "{}-{:02d}-{:02d}".format(now.year, now.month, now.day)
 			return render_template('add_leitura.html', user=escape(session['username']), nowtime=time, nowdate=date)
 
 	else:
