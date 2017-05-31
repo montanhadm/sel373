@@ -178,8 +178,7 @@ def view_table():
 						search = "{:04d}-{:02d}".format(ano,mes)
 						cur.execute("SELECT * FROM leituras WHERE SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (search,))
 				else:
-					search = "{:04d}".format(ano)
-					cur.execute("SELECT * FROM leituras WHERE SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (search,))
+					cur.execute("SELECT * FROM leituras WHERE SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (ano,))
 			else:
 				cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
 
