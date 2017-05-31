@@ -182,7 +182,7 @@ def remove_row(row_id):
 		cur.execute("SELECT * FROM leituras WHERE ID = ?", (row_id,))
 
 		row = cur.fetchone()
-		if row["USER"] = user:
+		if row["USER"] == user:
 			cur.execute("DELETE FROM leituras WHERE ID = ?", (row_id,))
 			return redirect('/view/table/')
 		else:
