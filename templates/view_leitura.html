@@ -26,14 +26,14 @@
                 <div class="menu_list">
                     <select name="hora">
                         <option value="hora">Hora</option>
-                        {% for hora in range(0,23) %}
+                        {% for hora in range(0,24) %}
                         <option value="{{hora}}">{{hora}}h</option>
                         {% endfor %}
                     </select>
 
                     <select name="dia">
                         <option value="dia">Dia</option>
-                        {% for dia in range(1,31) %}
+                        {% for dia in range(1,32) %}
                         <option value="{{dia}}">{{dia}}</option>
                         {% endfor %}
                     </select>
