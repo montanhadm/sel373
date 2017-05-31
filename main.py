@@ -172,13 +172,13 @@ def view_table():
 			if ano != 'ano':
 				if mes != 'mes':
 					if dia != 'dia':
-						search = "{:04d}-{:02d}-{:02d}".format(ano, mes, dia)
-						cur.execute("SELECT * FROM leituras WHERE DATA = ? ORDER BY DATA DESC, HORA DESC", (search,))
+						search = "{}-{}-{}".format(ano, mes.zfill(2), dia.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND DATA = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 					else:
-						search = "{:04d}-{:02d}".format(ano,mes)
-						cur.execute("SELECT * FROM leituras WHERE SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (search,))
+						search = "{}-{}".format(ano,mes.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 				else:
-					cur.execute("SELECT * FROM leituras WHERE SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (ano,))
+					cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (user, ano))
 			else:
 				cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
 
