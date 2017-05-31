@@ -211,6 +211,10 @@ def view_statistics():
 	else:
 		return redirect('/')
 
+@app.route('/torugo/', methods=['GET'])
+def add_photo():
+	return render_template('add_photo.html')
+
 
 @app.errorhandler(404)
 def page_not_found():
