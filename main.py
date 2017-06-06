@@ -127,7 +127,7 @@ def signup():
 					con.close()
 
 					session['signedup'] = 'yes'
-					return redirect('index.html', code=303)
+					return redirect('/', code=303)
 
 				else:
 					con.rollback()
