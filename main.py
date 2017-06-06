@@ -126,7 +126,7 @@ def signup():
 					con.commit()
 					con.close()
 
-					session['signedup'] = yes
+					session['signedup'] = 'yes'
 					return redirect('index.html')
 
 				else:
