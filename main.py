@@ -39,6 +39,11 @@ def index():
 	else:
 		if 'username' in session:
 			return render_template('index.html', user=escape(session['username']))
+		
+		if 'signedup' in session:
+			session.clear()
+			return render_template('index.html', msg=100)
+
 		return render_template('index.html')
 
 
@@ -121,7 +126,8 @@ def signup():
 					con.commit()
 					con.close()
 
-					return render_template('index.html', msg = 100)
+					session['signedup'] = yes
+					return redirect('index.html')
 
 				else:
 					con.rollback()
