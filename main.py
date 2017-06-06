@@ -184,9 +184,25 @@ def view_table():
 						search = "{}-{}".format(ano,mes.zfill(2))
 						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 				else:
-					cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (user, ano))
+					if dia != 'dia':
+						search = "{}".format(dia.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,4) = ? AND SUBSTR(DATA,9,10) = ? ORDER BY DATA DESC, HORA DESC", (user, ano, search))
+					else:
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,4) = ? ORDER BY DATA DESC, HORA DESC", (user, ano))
 			else:
-				cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
+				if mes != 'mes':
+					if dia != 'dia':
+						search = "{}-{}".format(mes.zfill(2), dia.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,6,10) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+					else:
+						search = "{}".format(mes.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,6,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+				else:
+					if dia != 'dia':
+						search = "{}".format(dia.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,9,10) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+					else:
+						cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
 
 			rows = cur.fetchall()
 			return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
