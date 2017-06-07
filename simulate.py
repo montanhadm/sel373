@@ -35,7 +35,7 @@ random.seed()
 
 bath_times = []
 for i in range(num_pessoas):
-	bath_times.append(random.choices(bath_h))
+	bath_times.append(random.choice(bath_h))
 
 wash_ratio = (int)(4.5*((num_pessoas/2) + random.randint(-1,1)) + 0.5)
 
@@ -62,7 +62,7 @@ for year in years:
 		for day in days:
 
 			if (day - initial_day) % step == 0:
-				wash_hour = random.choices(wash_h)
+				wash_hour = random.choice(wash_h)
 			
 			data = "{}-{}-{}".format(year, str(month+1).zfill(2), str(day+1).zfill(2))
 			
