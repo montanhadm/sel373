@@ -2,16 +2,17 @@ import sqlite3 as sql
 import random
 
 # TEST ACCOUNTS:
-#	Mario	mario123	4p
+#	Mario	mario123	4p - float values
 #	Luigi	luigi123	3p
 #	Yoshi	yoshi123	2p
 #	Toad	toad123		7p
 #	Shyguy	shyguy123	1p
+#	Peach	peach123	4p
 
 # Parâmetros Iniciais
 
-user = "Mario"
-num_pessoas = 4
+user = "Luigi"
+num_pessoas = 3
 local_waste = random.randint(0, 450000)
 bath_h = [0, 6, 7, 8, 9, 18, 19, 20, 21, 22, 23]
 wash_h = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
@@ -93,6 +94,8 @@ for year in years:
 						print("VAZOU\n")
 
 				hora = "{}:00".format(str(hour).zfill(2))
+
+				local_waste = int(local_waste)
 
 				cur.execute("""INSERT INTO leituras (DATA, HORA, VALOR, USER) VALUES (?,?,?,?)""", (data, hora, local_waste, user))
 				con.commit()
