@@ -52,7 +52,9 @@ for year in years:
 	else:
 		month_days[1] = 28
 
-	for month in range(12):
+
+
+	for month in range( 5 if year == 2017 else 12):
 
 		days = month_days[month]
 
