@@ -77,7 +77,7 @@ for year in years:
 					local_waste += bath_waste + random.randint(-100,100)*bath_waste_range/100
 
 				#other
-				local_waste += other_normal_waste*(other_waste + random.randint(-100,100)*other_waste_range/100)
+				local_waste += other_normal_waste[hour]*(other_waste + random.randint(-100,100)*other_waste_range/100)
 
 				#vazamentos
 				for i in range(4):
