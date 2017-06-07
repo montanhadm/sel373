@@ -56,8 +56,8 @@ for year in years:
 		days = month_days[month]
 
 		# dias para lavar roupa
-		step = days / wash_ratio
-		initial_day = random.randint(1,step)
+		step = (days / wash_ratio) + 0.5
+		initial_day = random.randint(1,(int)step)
 
 		for day in days:
 
