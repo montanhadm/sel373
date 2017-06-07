@@ -59,9 +59,9 @@ for year in years:
 		step = (int)((days / wash_ratio) + 0.5)
 		initial_day = random.randint(1,step)
 
-		for day in days:
+		for day in range(days):
 
-			if (day - initial_day) % step == 0:
+			if (day + 1 - initial_day) % step == 0:
 				wash_hour = random.choice(wash_h)
 			
 			data = "{}-{}-{}".format(year, str(month+1).zfill(2), str(day+1).zfill(2))
@@ -69,7 +69,7 @@ for year in years:
 			for hour in range(24):
 
 				#lava roupa
-				if (day - initial_day) % step == 0 and hour == wash_hour:
+				if (day + 1 - initial_day) % step == 0 and hour == wash_hour:
 					local_waste += wash_waste + random.randint(-100,100)*wash_waste_range/100
 
 				#banho
