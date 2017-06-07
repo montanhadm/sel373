@@ -11,8 +11,8 @@ import random
 
 # Parâmetros Iniciais
 
-user = "Luigi"
-num_pessoas = 3
+user = "Yoshi"
+num_pessoas = 2
 local_waste = random.randint(0, 450000)
 bath_h = [0, 6, 7, 8, 9, 18, 19, 20, 21, 22, 23]
 wash_h = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
@@ -100,7 +100,7 @@ for year in years:
 				local_waste = int(local_waste)
 
 				cur.execute("""INSERT INTO leituras (DATA, HORA, VALOR, USER) VALUES (?,?,?,?)""", (data, hora, local_waste, user))
-				con.commit()
+	con.commit()
 
 con.close()
 
