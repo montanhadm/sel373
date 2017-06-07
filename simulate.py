@@ -88,7 +88,7 @@ for year in years:
 						print("VAZAMENTO ARRUMADO\n")
 
 
-					if random.randrange(0, 100, 0.01) < leak_chance[i]:
+					if random.randrange(0, 10000, 1)/100 < leak_chance[i]:
 						is_leak[i] += 1
 						print("VAZOU\n")
 
