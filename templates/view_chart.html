@@ -42,14 +42,15 @@
             </div>
             <script>
                 var ctx = document.getElementById("myChart");
-                var dados = {{ value }};
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
                         datasets: [{
                             label: 'metros cubicos gastos',
-                            data: dados,
+                            data: [{% for item in value %}
+                                    {{item}}
+                                    {% end for %}],
                             backgroundColor: 'rgba(100, 149, 237, 0.65)',
                             borderColor: 'rgba(100, 149, 237, 1)',
                             borderWidth: 1

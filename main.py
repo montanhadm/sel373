@@ -225,7 +225,7 @@ def view_chart():
 			min_value = cur.fetchone()
 			value[mes-1] = max_value - min_value
 
-		return render_template('view_chart.html', value = value, user=escape(session['username']))
+		return render_template('view_chart.html', value=value, user=escape(session['username']))
 	else:
 		return redirect('/')
 
