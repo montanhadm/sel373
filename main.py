@@ -195,8 +195,8 @@ def view_table():
 						search = "{}-{}".format(mes.zfill(2), dia.zfill(2))
 						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,6,10) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 					else:
-						search = "-{}-".format(mes.zfill(2))
-						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,5,8) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+						search = "{}".format(mes.zfill(2))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,6,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 				else:
 					if dia != 'dia':
 						search = "{}".format(dia.zfill(2))
@@ -213,7 +213,19 @@ def view_table():
 @app.route('/view/chart/', methods=['GET'])
 def view_chart():
 	if 'username' in session:
-		return render_template('view_chart.html', user=escape(session['username']))
+		ano = 2016
+		user = session['username']
+		con = sql.connect("database/winput.db")
+		cur = con.cursor()
+		for mes in range (1, 13):
+			search = "{}-{}".format(ano,mes.zfill(2))
+			cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+			max_value = cur.fetchone()
+			cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA ASC, HORA ASC", (user, search))
+			min_value = cur.fetchone()
+			value[mes-1] = max_value - min_value
+
+		return render_template('view_chart.html', value = value, user=escape(session['username']))
 	else:
 		return redirect('/')
 
