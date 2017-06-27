@@ -217,13 +217,14 @@ def view_chart():
 		user = session['username']
 		con = sql.connect("database/winput.db")
 		cur = con.cursor()
-		for mes in range (1, 13):
-			search = "{}-{}".format(ano,mes.zfill(2))
-			cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
-			max_value = cur.fetchone()
-			cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA ASC, HORA ASC", (user, search))
-			min_value = cur.fetchone()
-			value[mes-1] = max_value - min_value
+		#for mes in range (1, 13):
+		#	search = "{}-{}".format(ano,mes.zfill(2))
+		#	cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+		#	max_value = cur.fetchone()
+		#	cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA ASC, HORA ASC", (user, search))
+		#	min_value = cur.fetchone()
+		#	value[mes-1] = max_value - min_value
+		value = [100, 200, 150, 300, 400, 450, 120, 135, 290, 80, 240, 210]
 
 		return render_template('view_chart.html', value=value, user=escape(session['username']))
 	else:
