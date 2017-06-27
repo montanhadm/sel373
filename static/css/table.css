@@ -43,6 +43,11 @@ a[id="delete"]:hover {
     background-color: transparent;
 }
 
+#container {
+    width: 85%;
+    max-height: 500px;
+}
+
 @media screen
     and (min-width: 500px) 
     and (min-device-width: 1000px) {
@@ -53,5 +58,8 @@ a[id="delete"]:hover {
         
         a[id="delete"] {
             font-size: 14px;
+        }
+        #container {
+            width: 65%;
         }
 }
