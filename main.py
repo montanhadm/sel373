@@ -213,10 +213,10 @@ def view_table():
 @app.route('/view/chart/', methods=['GET'])
 def view_chart():
 	if 'username' in session:
-		ano = 2016
-		user = session['username']
-		con = sql.connect("database/winput.db")
-		cur = con.cursor()
+		#ano = 2016
+		#user = session['username']
+		#con = sql.connect("database/winput.db")
+		#cur = con.cursor()
 		#for mes in range (1, 13):
 		#	search = "{}-{}".format(ano,mes.zfill(2))
 		#	cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
