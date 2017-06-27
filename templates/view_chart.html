@@ -42,13 +42,13 @@
             </div>
             <script>
                 var ctx = document.getElementById("myChart");
-                var dados = {{ value|safe }}
+                var dados = {{ value }};
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
                         datasets: [{
-                            label: 'metros cúbicos gastos',
+                            label: 'metros cubicos gastos',
                             data: dados,
                             backgroundColor: 'rgba(100, 149, 237, 0.65)',
                             borderColor: 'rgba(100, 149, 237, 1)',
@@ -59,7 +59,7 @@
                         responsive: true,
                         title: {
                             display: true,
-                            text: 'Medições no ano 2016',
+                            text: 'Medicoes no ano 2016',
                         },
                         tooltips: {
                             mode: 'index',
