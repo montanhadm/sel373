@@ -196,7 +196,7 @@ def view_table():
 						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,6,10) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 					else:
 						search = "{}".format(mes.zfill(2))
-						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,6,7) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
+						cur.execute("SELECT * FROM leituras WHERE USER = ? AND SUBSTR(DATA,9,10) = ? ORDER BY DATA DESC, HORA DESC", (user, search))
 				else:
 					if dia != 'dia':
 						search = "{}".format(dia.zfill(2))
