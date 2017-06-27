@@ -213,7 +213,7 @@ def view_table():
 @app.route('/view/chart/', methods=['GET'])
 def view_chart():
 	if 'username' in session:
-		return redirect('/view/table')
+		return render_template('view_chart.html', user=escape(session['username']))
 	else:
 		return redirect('/')
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Visualizar Leituras</title>
+        {% include 'includer.html' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/view.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/filter.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    </head>
+    
+	<body>
+	
+        <nav>{% include 'nav.html' %}</nav>
+        
+        <div id="tabs">
+            <a href="/view/table" class="tab">Tabela de Medições</a>
+            <a href="/view/chart" class="tab selected">Gráfico de Consumo</a>
+            <a href="/view/estimate" class="tab">Estimativas</a>
+            <a href="/view/statistics" class="tab">Estatísticas</a>
+        </div>
+        
+        
+        
+        <center>
+            <form method="post">
+                <div class="menu_list">
+
+                    <select name="dia">
+                        <option value="dia">Dia</option>
+                        {% for dia in range(1,32) %}
+                        <option value="{{dia}}">{{dia}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select name="mes">
+                        <option value="mes">Mês</option>
+                        <option value="01">Jan</option>
+                        <option value="02">Fev</option>
+                        <option value="03">Mar</option>
+                        <option value="04">Abr</option>
+                        <option value="05">Mai</option>
+                        <option value="06">Jun</option>
+                        <option value="07">Jul</option>
+                        <option value="08">Ago</option>
+                        <option value="09">Set</option>
+                        <option value="10">Out</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dez</option>
+                    </select>
+
+                    <select name="ano">
+                        <option value="ano">Ano</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                    </select>
+
+                    <input id="filter" type="submit" value="Filtrar">
+                </div>
+            </form>
+            
+            <canvas id="myChart" width="500" height="500"></canvas>
+            <script>
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+        </center>
+        
+        <footer>{% include 'footer.html' %}</footer>
+		
+	</body>
+</html>
