@@ -38,7 +38,7 @@ bath_times = []
 for i in range(num_pessoas):
 	bath_times.append(random.choice(bath_h))
 
-wash_ratio = (int)(4.5*((num_pessoas/2) + random.randint(-1,1)) + 0.5)
+wash_ratio = (int)(((4.5*num_pessoas/2) + 4.5*random.randint(-1,1)) + 0.5)
 
 # Simulação
 
