@@ -223,9 +223,9 @@ def view_chart():
 		#	cur.execute("SELECT VALOR FROM leituras WHERE USER = ? AND SUBSTR(DATA,1,7) = ? ORDER BY DATA ASC, HORA ASC", (user, search))
 		#	min_value = cur.fetchone()
 		#	value[mes-1] = max_value - min_value
-		value = [100, 200, 150, 300, 400, 450, 120, 135, 290, 80, 240, 210]
+		#value = [100, 200, 150, 300, 400, 450, 120, 135, 290, 80, 240, 210]
 
-		return render_template('view_chart.html', value=value, user=escape(session['username']))
+		return render_template('view_chart.html', user=escape(session['username']))
 	else:
 		return redirect('/')
 

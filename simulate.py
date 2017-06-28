@@ -77,7 +77,10 @@ for year in years:
 
 				#banho
 				if hour in bath_times:
-					local_waste += bath_waste + random.randint(-100,100)*bath_waste_range/100
+					if month < 2 or month > 9
+						local_waste += bath_waste + random.randint(-50,300)*bath_waste_range/100
+					else: 
+						local_waste += bath_waste + random.randint(-100,100)*bath_waste_range/100
 
 				#other
 				local_waste += other_normal_waste[hour]*(other_waste + random.randint(-100,100)*other_waste_range/100)
