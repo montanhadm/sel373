@@ -90,12 +90,12 @@ for year in years:
 
 					if is_leak[i] > 0 and hour > 8 and hour < 20 and random.randrange(0, 100, 1) < leak_fixchance[i]:
 						is_leak[i] -= 1
-						print("{}-{}-{} {}:00 - VAZAMENTO ARRUMADO\n".format((year, str(month+1).zfill(2), str(day+1).zfill(2), str(hour).zfill(2)))
+						print("{}-{}-{} {}:00 - VAZAMENTO ARRUMADO\n".format(year, str(month+1).zfill(2), str(day+1).zfill(2), str(hour).zfill(2)))
 
 
 					if random.randrange(0, 10000, 1)/100 < leak_chance[i]:
 						is_leak[i] += 1
-						print("VAZOU\n")
+						print("{}-{}-{} {}:00 - VAZOU\n".format(year, str(month+1).zfill(2), str(day+1).zfill(2), str(hour).zfill(2)))
 
 				hora = "{}:00".format(str(hour).zfill(2))
 
