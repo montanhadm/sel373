@@ -4,15 +4,14 @@ import random
 # TEST ACCOUNTS:
 #	Mario	mario123	4p - float values
 #	Luigi	luigi123	3p
-#	Yoshi	yoshi123	2p
+#	Yoshi	yoshi123	5p
 #	Toad	toad123		7p
-#	Shyguy	shyguy123	1p
 #	Peach	peach123	4p
 
 # Parâmetros Iniciais
 
-user = "Yoshi"
-num_pessoas = 2
+user = "Peach"
+num_pessoas = 4
 local_waste = random.randint(0, 450000)
 bath_h = [0, 6, 7, 8, 9, 18, 19, 20, 21, 22, 23]
 wash_h = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
@@ -77,7 +76,7 @@ for year in years:
 
 				#banho
 				if hour in bath_times:
-					if month < 2 or month > 9
+					if month < 2 or month > 9:
 						local_waste += bath_waste + random.randint(-50,300)*bath_waste_range/100
 					else: 
 						local_waste += bath_waste + random.randint(-100,100)*bath_waste_range/100
@@ -91,7 +90,7 @@ for year in years:
 
 					if is_leak[i] > 0 and hour > 8 and hour < 20 and random.randrange(0, 100, 1) < leak_fixchance[i]:
 						is_leak[i] -= 1
-						print("VAZAMENTO ARRUMADO\n")
+						print("{}-{}-{} {}:00 - VAZAMENTO ARRUMADO\n".format((year, str(month+1).zfill(2), str(day+1).zfill(2), str(hour).zfill(2)))
 
 
 					if random.randrange(0, 10000, 1)/100 < leak_chance[i]:
