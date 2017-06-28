@@ -166,8 +166,8 @@ def view_table():
 
 		if request.method == 'GET':
 			cur.execute("SELECT * FROM leituras WHERE USER = ? ORDER BY DATA DESC, HORA DESC", (user,))
-
-			rows = cur.fetchall()
+			for i in range (0, 50)
+				rows += cur.fetchone()
 
 			return render_template('view_leitura.html', rows=rows, user=escape(session['username']))
 
